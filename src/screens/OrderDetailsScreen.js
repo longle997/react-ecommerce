@@ -19,7 +19,10 @@ const OrderDetailsScreen = () => {
           Authorization: `Bearer ${user.access}`,
         },
       };
-      const orderDetailsResponse = await axios.get(`/api/orders/${id}`, config);
+      const orderDetailsResponse = await axios.get(
+        `https://vercel-django-eosin.vercel.app/api/orders/${id}`,
+        config
+      );
       setOrder(orderDetailsResponse.data);
     };
 

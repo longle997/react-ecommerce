@@ -43,7 +43,7 @@ function ProductScreen() {
 
       setLoading(true);
       axios
-        .get(`/api/products/${id}`)
+        .get(`https://vercel-django-eosin.vercel.app/api/products/${id}`)
         .then((res) => {
           if (!ignore) setProduct(res.data); // only update if this effect is still “current”
         })
@@ -63,7 +63,7 @@ function ProductScreen() {
 
   function handleAddToCart(e) {
     navigate(`/cart/${id}?qty=${qty}`);
-    // history.push(`/api/products`);
+    // history.push(`https://vercel-django-eosin.vercel.app/api/products`);
   }
 
   if (loading) return <Loader></Loader>;

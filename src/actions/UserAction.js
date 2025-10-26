@@ -13,10 +13,13 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
     dispatch({
       type: USER_LOGIN_REQUEST,
     });
-    const { data } = await axios.post("/api/users/login/", {
-      username: email,
-      password: password,
-    });
+    const { data } = await axios.post(
+      "https://vercel-django-eosin.vercel.app/api/users/login/",
+      {
+        username: email,
+        password: password,
+      }
+    );
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
@@ -46,7 +49,7 @@ export const userUpdateInfo =
       const { user } = getState().user;
       // the header config only available if the user.access is valid
       const { data } = await axios.put(
-        "/api/users/profile/update/",
+        "https://vercel-django-eosin.vercel.app/api/users/profile/update/",
         {
           name: name,
           email: email,

@@ -61,10 +61,10 @@ function EditProductModal({ show, onHide, product, onSave, user }) {
     fd.append("image", file); // <-- DRF expects 'image' field (adjust if your serializer uses a different name)
 
     // Example endpoint 1 (nested route):
-    // const url = `/api/products/${productId}/upload-image/`;
+    // const url = `https://vercel-django-eosin.vercel.app/api/products/${productId}/upload-image/`;
 
     // Example endpoint 2 (generic upload with product id param):
-    const url = `/api/products/${product._id}/image/`;
+    const url = `https://vercel-django-eosin.vercel.app/api/products/${product._id}/image/`;
     const config = {
       headers: {
         "Content-type": "multipart/form-data",
@@ -218,7 +218,10 @@ function AdminScreenProducts() {
     setLoading(true);
     setErr("");
     try {
-      const res = await axios.get("/api/products/", { params: { page: p } });
+      const res = await axios.get(
+        "https://vercel-django-eosin.vercel.app/api/products/",
+        { params: { page: p } }
+      );
       setData(res.data);
     } catch (e) {
       setErr(e?.response?.data?.detail || e.message);
@@ -257,7 +260,7 @@ function AdminScreenProducts() {
   }
 
   const saveProduct = async (updated) => {
-    // await axios.put(`/api/products/${updated._id}/`, updated, config);
+    // await axios.put(`https://vercel-django-eosin.vercel.app/api/products/${updated._id}/`, updated, config);
     if (updated._id) {
       dispatch(updateProduct(updated._id, updated, config));
     } else {
@@ -270,7 +273,10 @@ function AdminScreenProducts() {
   }
 
   const deleteProduct = async () => {
-    await axios.delete(`/api/products/${deletProductID}/`, config);
+    await axios.delete(
+      `https://vercel-django-eosin.vercel.app/api/products/${deletProductID}/`,
+      config
+    );
     setShowDeleteModal(false);
     dispatch(listProducts());
   };

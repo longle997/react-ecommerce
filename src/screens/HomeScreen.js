@@ -60,7 +60,10 @@ function HomeScreen() {
     setLoading(true);
     setErr("");
     try {
-      const res = await axios.get("/api/products/", { params: { page: p } });
+      const res = await axios.get(
+        "https://vercel-django-eosin.vercel.app/api/products/",
+        { params: { page: p } }
+      );
       setData(res.data);
     } catch (e) {
       setErr(e?.response?.data?.detail || e.message);
@@ -86,7 +89,10 @@ function HomeScreen() {
 
   useEffect(() => {
     const fetchImages = async () => {
-      const response = await axios.post("/api/images/", { folder: "banners" });
+      const response = await axios.post(
+        "https://vercel-django-eosin.vercel.app/api/images/",
+        { folder: "banners" }
+      );
       const images = response.data.results.map((image) => image["url"]);
       setImages(images);
     };

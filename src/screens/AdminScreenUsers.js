@@ -223,7 +223,10 @@ export default function AdminScreenUsers() {
 
   const fetchUsers = async () => {
     try {
-      const userResponse = await axios.get("/api/users", config);
+      const userResponse = await axios.get(
+        "https://vercel-django-eosin.vercel.app/api/users",
+        config
+      );
       setUsers(userResponse.data);
     } catch (error) {
       if (error.status === 401) {
@@ -270,17 +273,25 @@ export default function AdminScreenUsers() {
   // Save user after editing
   const saveUser = async (updated) => {
     // ⚠️ In a real app, you would call your backend API here (PUT /users/:id)
-    // Example: await fetch(`/api/users/${getId(updated)}`, { method: "PUT", body: JSON.stringify(updated) })
+    // Example: await fetch(`https://vercel-django-eosin.vercel.app/api/users/${getId(updated)}`, { method: "PUT", body: JSON.stringify(updated) })
     try {
       if (updated.id !== null && updated.id !== undefined) {
-        await axios.put(`/api/users/update/${updated.id}`, updated, config);
+        await axios.put(
+          `https://vercel-django-eosin.vercel.app/api/users/update/${updated.id}`,
+          updated,
+          config
+        );
         setUsers((prev) =>
           prev.map((u) =>
             getId(u) === getId(updated) ? { ...u, ...updated } : u
           )
         );
       } else {
-        await axios.post("/api/users/register/", updated, config);
+        await axios.post(
+          "https://vercel-django-eosin.vercel.app/api/users/register/",
+          updated,
+          config
+        );
         setTimeout(() => {
           window.location.reload();
         }, 1000);
@@ -323,7 +334,7 @@ export default function AdminScreenUsers() {
 
   const deleteUser = async () => {
     const { data } = await axios.delete(
-      `/api/users/delete/${deletUserID}/`,
+      `https://vercel-django-eosin.vercel.app/api/users/delete/${deletUserID}/`,
       config
     );
     setShowDeleteModal(false);

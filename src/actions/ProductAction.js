@@ -33,7 +33,9 @@ export const listProducts = () => async (dispatch) => {
       type: PRODUCT_LIST_REQUEST,
     });
 
-    const { data } = await axios.get("/api/products");
+    const { data } = await axios.get(
+      "https://vercel-django-eosin.vercel.app/api/products"
+    );
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -55,7 +57,9 @@ export const detailsProduct = (productID) => async (dispatch) => {
     dispatch({
       type: PRODUCT_DETAILS_REQUEST,
     });
-    const { data } = await axios.get(`/api/products/${productID}`);
+    const { data } = await axios.get(
+      `https://vercel-django-eosin.vercel.app/api/products/${productID}`
+    );
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data,
@@ -75,7 +79,7 @@ export const updateProduct =
         type: PRODUCT_UPDATE_REQUEST,
       });
       const { data } = await axios.put(
-        `/api/products/${productID}/`,
+        `https://vercel-django-eosin.vercel.app/api/products/${productID}/`,
         updated,
         config
       );
@@ -96,7 +100,11 @@ export const createProduct = (product, config) => async (dispatch) => {
     dispatch({
       type: PRODUCT_CREATE_REQUEST,
     });
-    const { data } = await axios.post(`/api/products/`, product, config);
+    const { data } = await axios.post(
+      `https://vercel-django-eosin.vercel.app/api/products/`,
+      product,
+      config
+    );
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,
