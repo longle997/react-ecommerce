@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        position: relative; /* Creates positioning context for Box B */
+        display: inline-block; /* Container fits around its content (Box A & B) */
+        width: 220px;
+        margin: 20px;
+      }
+
+      /* Shared box styles */
+      .box {
+        padding: 12px;
+        color: #111;
+        font-weight: 600;
+        border-radius: 4px;
+      }
+
+      /* Box A: normal element in flow */
+      .box-a {
+        background-color: #fecaca; /* Light red */
+      }
+
+      /* Box B: absolutely positioned popup */
+      .box-b {
+        z-index: 50; /* Higher stacking order */
+        top: 0; /* Align to top of container */
+        left: 0; /* Align to left of container */
+        background-color: #bbf7d0; /* Light green */
+        border: 1px solid #86efac;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        bottom: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <div className="container">
+      <div className="box box-a">Box A</div>
+      <div className="box box-b">Box B</div>
+    </div>
+  </body>
+</html>
